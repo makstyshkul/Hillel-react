@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, createRef } from "react";
 import { renderCurrentType, treeToMap } from "./Utils";
 import data from "./data.json";
 
@@ -11,10 +11,11 @@ class App extends Component {
 		this.state = {
 			value: '',
 		}
+		this.inputRef = createRef();
 	}
 
-	handleChange = (event) => {
-		this.setState({ ...this.state, value: event.target.value });
+	handleClick = () => {
+		this.setState({ ...this.state, value: this.inputRef.current.value });
 	}
 
 	extendFolders = () => {
@@ -37,11 +38,10 @@ class App extends Component {
 	}
 
 	render() {
-		//console.log(this.extendFolders()) 
 		return (
 			<>
-				<input placeholder="type me" onChange={this.handleChange}  value={this.state.value}/>
-				{/* <button onClick={this.handleChange} value={this.state.value}>Show</button> */}
+				<input ref={this.inputRef} placeholder="type me" />
+				<button onClick={this.handleClick}>Show</button>
 				<ul>
 					{renderCurrentType(data, this.extendFolders())}
 				</ul>

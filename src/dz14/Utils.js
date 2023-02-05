@@ -6,7 +6,7 @@ import { FOLDER_TYPE } from "./Constants.js";
 
 export const renderCurrentType = (data, expandedFolders = []) =>
 	data.map(i => 
-		(i.type === FOLDER_TYPE) && (expandedFolders.some(f => f.includes(i.name))) ? (
+		(i.type === FOLDER_TYPE) && ( expandedFolders.some(f => f.includes(i.name))) ? (
 			<Folder key={JSON.stringify({ ...i, expandedFolders: expandedFolders })} 
 				name={i.name} 
 				expandedFolders={expandedFolders} 
